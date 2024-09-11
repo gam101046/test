@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [memberId, setMemberId] = useState<number | null>(null);
 
-  const productId = 4; // Change to the ID of the product you want to fetch
+  const productId = 2; // Change to the ID of the product you want to fetch
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       }
     };
     fetchProduct();
-    setMemberId(1);
+    setMemberId(4);
   }, [productId]);
 
   const increaseQuantity = () => {
@@ -143,16 +143,17 @@ const Navbar: React.FC = () => {
             <img src={product.Picture_product} className="Bag" alt='Product' />
           </div>
 
-         
-          <div className="game"></div>
+          <ArrowCircleRight size={44} className="arrow-icon" />
+          <ArrowCircleLeft size={44} className="arrow-icon1" />
+
           <Plus size={25} className="icon-plus" onClick={increaseQuantity} />
           <Minus size={25} className="icon-minus" onClick={decreaseQuantity} />
+
           <div className="quantity-control">
             <span className="quantity">{quantity}</span>
           </div>
-          <ArrowCircleRight size={44} className="arrow-icon" />
-          <ArrowCircleLeft size={44} className="arrow-icon1" />
-          <button className="basket">หยิบใส่ตะกร้า</button>
+
+          {/* <button className="basket">หยิบใส่ตะกร้า</button> */}
           <button className="Buy-products" onClick={handleBuyProduct}>ซื้อสินค้า</button>
           <button className="Chat">แชทกับผู้ขาย</button>
 

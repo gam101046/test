@@ -2,7 +2,7 @@
 
 body {
     width: 1440px;
-    height: 900px;
+    height: 800px;
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
@@ -14,7 +14,7 @@ body {
     top: 0px;
     left: 68px;
     width: 1302px;
-    height: 880px;
+    height: 820px;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -34,7 +34,7 @@ body {
     color: #FB7743;
     font-size: 50px;
     font-weight: Normal ;
-    padding-top: 560px;
+    padding-top: 460px;
     padding-left: 577px;
   }
   .navbar h3 {
@@ -42,7 +42,7 @@ body {
     color: black;
     font-size: 28px;
     font-weight: Normal ;
-    padding-top: 640px;
+    padding-top: 560px;
     padding-left: 577px;
   }
   .rectangle {
@@ -51,7 +51,7 @@ body {
     left: 550px;
     width: 719px;
     height: 200px;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4b1;
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -174,13 +174,14 @@ body {
   .frame-1 {
     position: absolute;
     top: 245px;
-    left: 103px;
-    width: 272px;
+    left: 80px;
+    width: 320px;
     height: 396px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Hide any overflow from the image */
+
   }
   
   .Bag {
@@ -195,7 +196,7 @@ body {
   .arrow-icon {
     position: absolute;
     top: 430px;
-    left: 396px;
+    left: 416px;
     background: none;
     border: none;
     padding: 0;
@@ -209,7 +210,7 @@ body {
   .arrow-icon1 {
     position: absolute;
     top: 430px;
-    left: 40px;
+    left: 20px;
     background: none;
     border: none;
     padding: 0;
@@ -222,7 +223,7 @@ body {
 
   .icon-plus {
     position: absolute;
-    top: 679px;
+    top: 599px;
     left: 788px;
     background: none;
     border: none;
@@ -236,7 +237,7 @@ body {
   
   .icon-minus {
     position: absolute;
-    top: 679px;
+    top: 599px;
     left: 685px;
     background: none;
     border: none;
@@ -250,7 +251,7 @@ body {
   
   .quantity-control {
     position: absolute;
-    top: 670px;
+    top: 590px;
     left: 723px;
     background-color: #f0f0f0;
     border-radius: 20px;
@@ -271,13 +272,13 @@ body {
 
   .basket{
     position: absolute;
-    top: 762px;
+    top: 682px;
     left: 565px;
     background-color: #F3D745;
     border-radius: 25px;
     color: rgb(255, 255, 255);
-    width: 198px;
-    height: 65px;
+    width: 174px;
+    height: 46px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -289,13 +290,15 @@ body {
 
 .Buy-products{
     position: absolute;
-    top: 762px;
+    top: 682px;
     left: 820px;
     background-color: #FC8352;
     border-radius: 25px;
     color: rgb(255, 255, 255);
-    width: 198px;
-    height: 65px;
+    /* width: 198px;
+    height: 65px; */
+    width: 174px;
+    height: 46px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -305,13 +308,13 @@ body {
 }
 .Chat{
     position: absolute;
-    top: 762px;
+    top: 682px;
     left: 1075px;
     background-color: #3B873E;
     border-radius: 25px;
     color: rgb(255, 255, 255);
-    width: 198px;
-    height: 65px;
+    width: 174px;
+    height: 46px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -352,7 +355,7 @@ body {
 }
 
 .modal-content p {
-  font-size: 30px; 
+  font-size: 30px;
 }
 
 .modal-actions button {
@@ -370,12 +373,4 @@ body {
 .modal-actions .confirm-button {
   background-color: #4caf50; /* สีพื้นหลังของปุ่มยืนยัน */
   color: #fff; /* สีข้อความของปุ่มยืนยัน */
-}
-
-
-
-.game {
-  position: absolute;
-  top: 0px;
-  left: 68px;
 }

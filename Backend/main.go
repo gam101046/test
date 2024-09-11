@@ -34,6 +34,8 @@ func main() {
         router.PATCH("/orders/:id", controller.UpdateOrder)
         router.DELETE("/orders/:id", controller.DeleteOrder)
 		router.GET("/orders/member/:memberId", controller.GetOrdersByMemberID)
+		router.GET("/orders/member/:memberId/product/:productId", controller.GetOrdersByProductIDAndMemberID)
+		router.GET("/orders/seller/:sellerId/product/:productId", controller.GetOrdersByProductIDAndSellerID)
 
 
 		router.POST("/products", controller.CreateProduct)
@@ -41,12 +43,14 @@ func main() {
 		router.GET("/products", controller.ListProducts)
         router.DELETE("/products/:id", controller.DeleteProduct)
 		router.GET("/products_by_member/:member_id", controller.GetProductsByMemberID)
+		router.GET("/products/seller/:seller_id", controller.GetProductsBySellerID)
 
 
 		router.POST("/products_orders", controller.CreateProductsOrder)
 		router.GET("/products_orders", controller.ListProductsOrders)
         router.DELETE("/products_orders/:id", controller.DeleteProductsOrder)
 		router.GET("/products_orders/:order_id", controller.GetProductsOrdersByOrderID)
+
 
 
 	}

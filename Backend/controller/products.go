@@ -107,8 +107,6 @@ func DeleteProduct(c *gin.Context) { //ลบข้อมูลตาม id
 }
 
 
-
-// GET /products_by_member/:member_id
 func GetProductsByMemberID(c *gin.Context) {
     memberID := c.Param("member_id")
     var products []entity.Product
@@ -120,6 +118,27 @@ func GetProductsByMemberID(c *gin.Context) {
         Joins("JOIN products_orders ON products_orders.product_id = products.id").
         Joins("JOIN orders ON orders.id = products_orders.order_id").
         Where("orders.member_id = ?", memberID).
+        Preload("Seller").
+        Find(&products)
+
+    if result.Error != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": result.Error.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{"products": products})
+}
+
+
+func GetProductsBySellerID(c *gin.Context) {
+    sellerID := c.Param("seller_id")
+    var products []entity.Product
+
+    db := config.DB()
+    result := db.
+        Joins("JOIN products_orders ON products_orders.product_id = products.id").
+        Joins("JOIN orders ON orders.id = products_orders.order_id").
+        Where("orders.seller_id = ?", sellerID).
         Preload("Seller").
         Find(&products)
 

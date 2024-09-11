@@ -1,147 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  width: 1440px;
+  height: 800px;
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  display: flex;
+}
+
 .index {
-    position: absolute;
-    top: 65px;
-    left: 68px;
-    width: 1302px;
-    height: 1300px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 20px;
-  }
+  position: absolute;
+  top: 0px;
+  left: 68px;
+  width: 1302px;
+  height: 800px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+}
+.index h2 {
+  position: absolute;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  font-weight: Normal;
+  padding-top: 227px;
+  padding-left: 190px;
+}
 
-  .line {
-    width: 100;  
-    border-bottom: 2px solid black;  
-    margin: 50px 0;  
-    margin-left: 224px; 
-  }
-  
-  .product {
-    position: absolute;
-    top: 336px;
-    left: 30px;
-    width: 1239px;
-    height: 290px;
-    background-color: #FAF8F8;
-    border-radius: 10px;
-  }
-  .product2 {
-    position: absolute;
-    top: 650px;
-    left: 30px;
-    width: 1239px;
-    height: 290px;
-    background-color: #FAF8F8;
-    border-radius: 10px;
-  }
-
-  .product h4 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 28px;
-    padding-left: 280px;
-    z-index: 2;
-
-  }
-  .product h6 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 0px;
-    padding-left: 1000px;
-    z-index: 2;
-
-  }
-  .product h5 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 17px;
-    padding-left: 715px;
-    z-index: 2 ;
-
-  }
-  .index h1 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 227px;
-    padding-left: 135px;
-
-  }
-
-  .index h2 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 224px;
-    padding-left: 426px;
-
-  }
-
-  .index h3 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 219px;
-    padding-left: 586px;
-
-  }
-
-  .my-image {
-    position: absolute;
-    top: 248px;
-    left: 359px;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .my-image1 {
-    position: absolute;
-    top: 248px;
-    left: 521px;
-    width: 40px;
-    height: 40px;
-  }
-   
-  .my-image-bag {
-    position: absolute;
-    top: 20px;
-    left: 0px;
-    width: 181px;
-    height: 270px;
-  }
-  
-  .my-image-doll {
-    position: absolute;
-    top: 20px;
-    left: 0px;
-    width: 181px;
-    height: 270px;
-  }
-
-  .my-image-fan {
-    position: absolute;
-    top: 20px;
-    left: 0px;
-    width: 181px;
-    height: 270px;
-  }
+.my-image {
+  position: absolute;
+  top: 235px;
+  left: 100px;
+  width: 60px;
+  height: 60px;
+}
 
 .index .right-section {
   display: flex;
   align-items: center;
 }
-
 
 .index .right-section .links .button {
   display: flex;
@@ -155,7 +54,6 @@
   left: -67px;
   width: 375px;
   height: 375px;
-  margin-top: px;
 }
 
 .links {
@@ -164,7 +62,6 @@
   margin-left: 20px;
 }
 
-
 .links a {
   text-decoration: none;
   color: rgb(247, 245, 245);
@@ -172,155 +69,120 @@
   font-size: 25px;
 }
 
-  .search input {
-    position: absolute;
-    top: 100px;
-    left: 270px;
-    padding-left: 30px;
-    margin-right: 300px;
-    width: 436px;
-    height: 49px;
-    border-radius: 28px;
-    background-image: url('/Users/gam/sa-67-song_thor_sut/frontend/public/search-286.png');
-    background-repeat: no-repeat;
-    background-position: 420px center;
-    background-size: 30px;
-    font-size: 20px;
-  }
-  
-  .search input::placeholder {
-    color: #aaa;
-  }
-
-.button-login{
-    position: absolute;
-    top: 110px;
-    left: 790px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 25px;
-    color: rgb(255, 255, 255);
-    width: 174px;
-    height: 46px;
-    font-weight: bold;
-    font-size: 15px;
+.button-login {
+  position: absolute;
+  top: 110px;
+  left: 790px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  width: 174px;
+  height: 46px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.button-login:hover{
-    background-color: rgb(0, 0, 0);
-    color: white;
+.button-login:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
-
 
 .button-icon {
-    position: absolute;
-    top: 112px;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    width: 44px; /* ขนาดของปุ่ม */
-    height: 44px;
-  }
-  
-  .button-icon img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .button-icon:hover {
-    opacity: 0.5;
-  }
-  
-
-  .button-icon1 { left: 1000px; }
-  .button-icon2 { left: 1075px; }
-  .button-icon3 { left: 1140px; }
-  .button-icon4 { left: 1200px; }
-  
-
-  .cancel{
-    position: absolute;
-    top: 5px;
-    left: 1090px;
-    background-color: #DD4343;
-    border-radius: 25px;
-    color: rgb(255, 255, 255);
-    width: 130px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
+  position: absolute;
+  top: 112px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
 }
 
+.button-icon img {
+  width: 100%;
+  height: 100%;
+}
 
-.product2 h4 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 28px;
-    padding-left: 280px;
-    z-index: 2;
+.button-icon:hover {
+  opacity: 0.5;
+}
 
-  }
-  .product2 h6 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 0px;
-    padding-left: 1000px;
-    z-index: 2;
+.button-icon1 { left: 1000px; }
+.button-icon2 { left: 1075px; }
+.button-icon3 { left: 1140px; }
+.button-icon4 { left: 1200px; }
 
-  }
-  .product2 h5 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 17px;
-    padding-left: 715px;
-    z-index: 2 ;
+.button-review {
+  position: absolute;
+  top: 110px;
+  left: 261px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  width: 174px;
+  height: 46px;
+  font-weight: normal;
+  font-size: 20px;
+}
 
-  }
+.button-review:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
 
+.button-score {
+  position: absolute;
+  top: 110px;
+  left: 480px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  width: 174px;
+  height: 46px;
+  font-weight: normal;
+  font-size: 20px;
+}
 
-  .product3 {
-    position: absolute;
-    top: 964px;
-    left: 30px;
-    width: 1239px;
-    height: 290px;
-    background-color: #FAF8F8;
-    border-radius: 10px;
-  }
+.button-score:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
 
-  .product3 h4 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 28px;
-    padding-left: 280px;
-    z-index: 2;
+.button-product {
+  position: absolute;
+  top: 110px;
+  left: 700px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  width: 174px;
+  height: 46px;
+  font-weight: normal;
+  font-size: 20px;
+}
 
-  }
-  .product3 h6 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 0px;
-    padding-left: 1000px;
-    z-index: 2;
+.button-product:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
 
-  }
-  .product3 h5 {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 28px;
-    font-weight: Normal ;
-    padding-top: 17px;
-    padding-left: 715px;
-    z-index: 2 ;
+.button-icon5 {
+  position: absolute;
+  top: 112px;
+  left: 935px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 44px; /* ขนาดของปุ่ม */
+  height: 44px;
+}
 
-  }
+.button-icon5 img {
+  width: 100%;
+  height: 100%;
+}
+
+.button-icon5:hover {
+  opacity: 0.5;
+}

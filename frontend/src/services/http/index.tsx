@@ -273,6 +273,44 @@ async function GetProductsByMemberId(memberId: number, page: number, pageSize: n
   }
 }
 
+async function GetProductsBySellerId(sellerId: number, page: number, pageSize: number) {
+  try {
+    const res = await axios.get(`${apiUrl}/products/seller/${sellerId}`, {
+      params: {
+        page: page,
+        pageSize: pageSize,
+      },
+    });
+    return res.status === 200 ? res.data : false;
+  } catch (error) {
+    console.error("Error fetching products by seller ID:", error);
+    return false;
+  }
+}
+
+
+
+async function GetOrdersByProductIDAndMemberID(memberId: number, productId: number) {
+  try {
+    const res = await axios.get(`${apiUrl}/orders/member/${memberId}/product/${productId}`);
+    return res.status === 200 ? res.data : false;
+  } catch (error) {
+    console.error("Error fetching orders by Product ID and Member ID:", error);
+    return false;
+  }
+}
+
+async function GetOrdersByProductIDAndSellerID(sellerId: number, productId: number) {
+  try {
+    const res = await axios.get(`${apiUrl}/orders/seller/${sellerId}/product/${productId}`);
+    return res.status === 200 ? res.data : false;
+  } catch (error) {
+    console.error("Error fetching orders by Product ID and Seller ID:", error);
+    return false;
+  }
+}
+
+
 
 export {
   GetMembers,
@@ -294,6 +332,9 @@ export {
   UpdateProduct,
   DeleteProduct,
   GetProductsByMemberId,
+  GetProductsBySellerId,
+  GetOrdersByProductIDAndMemberID,
+  GetOrdersByProductIDAndSellerID,
 
   GetProductsOrders,
   GetProductsOrderById,
