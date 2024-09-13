@@ -21,6 +21,12 @@ interface Product {
   OrderID?: number;
 }
 
+interface Order {
+  ID: number;
+  Quantity: number;
+  Total_price: number;
+  SellerID: number;
+}
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
@@ -33,24 +39,46 @@ const Index: React.FC = () => {
   const [deleteId, setDeleteId] = useState<number | undefined>();
 
   // Function to fetch products with pagination
-  const fetchProducts = async (page: number = 1, pageSize: number = 10) => {
+  const fetchProducts = async (page: number = 1, pageSize: number = 10) => { // Replace with the actual seller ID
     try {
       const result = await GetProductsByMemberId(4, page, pageSize);
       if (result && Array.isArray(result.products)) {
-        const updatedProducts = await Promise.all(result.products.map(async (product: Product) => {
-          const orders = await GetOrdersByProductIDAndMemberID(4, product.ID);
+        const updatedProducts: Product[] = []; // Initialize an empty array
+        const uniqueProductOrderIds = new Set<number>(); // Set to keep track of unique product-order combinations
+  
+        for (const product of result.products) {
+          const orders: Order[] = await GetOrdersByProductIDAndMemberID(4, product.ID);
           if (orders && orders.length > 0) {
-            product.Price = orders[0].Total_price;
-            product.OrderID = orders[0].ID;
+            // แยกรายการสินค้าตาม Order ที่ต่างกัน
+            orders.forEach((order: Order) => {
+              const uniqueKey = `${product.ID}-${order.ID}`; // Unique key for product-order combination
+              if (!uniqueProductOrderIds.has(order.ID)) {
+                uniqueProductOrderIds.add(order.ID); // Mark this order ID as added
+                updatedProducts.push({
+                  ...product,
+                  Price: order.Total_price,
+                  OrderID: order.ID,
+                  Quantity: order.Quantity,
+                });
+              }
+            });
+          } else {
+            // หากไม่มีคำสั่งซื้อ ให้แสดงรายการสินค้าเดิม
+            if (!uniqueProductOrderIds.has(product.ID)) {
+              uniqueProductOrderIds.add(product.ID); 
+              updatedProducts.push(product);
+            }
           }
-          return product;
-        }));
-        setProducts(updatedProducts);
+        }
+  
+        setProducts(updatedProducts); 
       }
     } catch (error) {
       console.error(error);
     }
   };
+  
+  
 
   useEffect(() => {
     fetchProducts();

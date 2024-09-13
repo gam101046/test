@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
-    width: 1440px;
-    height: 800px;
+  width: 100vw;
+  height: 100vh;
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
@@ -15,14 +15,15 @@ body {
     left: 68px;
     width: 1302px;
     height: 820px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
+    z-index: 0;
   }
   .navbar h1 {
     position: absolute;
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.624);
     font-size: 28px;
     font-weight: Normal ;
     padding-top: 205px;
@@ -39,7 +40,7 @@ body {
   }
   .navbar h3 {
     position: absolute;
-    color: black;
+    color: rgba(0, 0, 0, 0.624);
     font-size: 28px;
     font-weight: Normal ;
     padding-top: 560px;
@@ -56,8 +57,9 @@ body {
     justify-content: space-between;
     border-radius: 20px;
   }
+
   .rectangle h1 {
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.624);
     font-size: 28px;
     font-weight: Normal ;
     padding-top: 0px;
@@ -170,6 +172,7 @@ body {
   .button-icon2 { left: 1075px; }
   .button-icon3 { left: 1140px; }
   .button-icon4 { left: 1200px; }
+
   
   .frame-1 {
     position: absolute;
@@ -189,6 +192,7 @@ body {
     max-height: 100%;
     object-fit: cover; /* or contain, depending on your needs */
     border-radius: 20px;
+    z-index: -10;
   }
   
 
@@ -295,9 +299,7 @@ body {
     background-color: #FC8352;
     border-radius: 25px;
     color: rgb(255, 255, 255);
-    /* width: 198px;
-    height: 65px; */
-    width: 174px;
+    width: 160px;
     height: 46px;
     font-size: 20px;
     font-weight: bold;
@@ -373,4 +375,27 @@ body {
 .modal-actions .confirm-button {
   background-color: #4caf50; /* สีพื้นหลังของปุ่มยืนยัน */
   color: #fff; /* สีข้อความของปุ่มยืนยัน */
+}
+
+
+.list-container {
+  position: relative; /* ใช้สำหรับให้เมนูจัดตำแหน่งสัมพันธ์กับปุ่ม */
+  display: inline-block; /* แสดงปุ่มและเมนูในบรรทัดเดียวกัน */
+}
+
+.list-menu {
+  display: none; /* ซ่อนเมนูเริ่มต้น */
+  position: absolute; /* จัดตำแหน่งเมนูให้แสดงขึ้นตามปุ่ม */
+  background-color: white; /* พื้นหลังสีขาว */
+  border: 1px solid #ccc; /* เส้นขอบ */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* เงา */
+  z-index: 10; /* ให้เมนูอยู่ด้านบน */
+  padding: 10px;
+  width: 140px;
+  height: 100px;
+  border-radius: 20px;
+}
+
+.list-container:hover .list-menu {
+  display: block; /* แสดงเมนูเมื่อชี้เมาส์ */
 }

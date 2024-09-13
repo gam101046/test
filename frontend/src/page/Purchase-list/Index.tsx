@@ -20,7 +20,13 @@ interface Product {
   Description: string;
   SellerID: number;
   OrderID?: number;
-  Quantity?: number;
+}
+
+interface Order {
+  ID: number;
+  Quantity: number;
+  Total_price: number;
+  SellerID: number;
 }
 
 const Index: React.FC = () => {
@@ -40,21 +46,42 @@ const Index: React.FC = () => {
     try {
       const result = await GetProductsBySellerId(sellerId, page, pageSize);
       if (result && Array.isArray(result.products)) {
-        const updatedProducts = await Promise.all(result.products.map(async (product: Product) => {
-          const orders = await GetOrdersByProductIDAndSellerID(sellerId, product.ID);
+        const updatedProducts: Product[] = []; // Initialize an empty array
+        const uniqueProductOrderIds = new Set<number>(); // Set to keep track of unique product-order combinations
+  
+        for (const product of result.products) {
+          const orders: Order[] = await GetOrdersByProductIDAndSellerID(sellerId, product.ID);
           if (orders && orders.length > 0) {
-            product.Price = orders[0].Total_price;
-            product.OrderID = orders[0].ID;
-            product.Quantity = orders[0].Quantity;
+            // แยกรายการสินค้าตาม Order ที่ต่างกัน
+            orders.forEach((order: Order) => {
+              const uniqueKey = `${product.ID}-${order.ID}`; // Unique key for product-order combination
+              if (!uniqueProductOrderIds.has(order.ID)) {
+                uniqueProductOrderIds.add(order.ID); // Mark this order ID as added
+                updatedProducts.push({
+                  ...product,
+                  Price: order.Total_price,
+                  OrderID: order.ID,
+                  Quantity: order.Quantity,
+                });
+              }
+            });
+          } else {
+            // หากไม่มีคำสั่งซื้อ ให้แสดงรายการสินค้าเดิม
+            if (!uniqueProductOrderIds.has(product.ID)) {
+              uniqueProductOrderIds.add(product.ID); 
+              updatedProducts.push(product);
+            }
           }
-          return product;
-        }));
-        setProducts(updatedProducts);
+        }
+  
+        setProducts(updatedProducts); 
       }
     } catch (error) {
       console.error(error);
     }
   };
+  
+  
 
   useEffect(() => {
     fetchProducts();

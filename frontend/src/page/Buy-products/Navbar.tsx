@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
       const result = await CreateOrder(orderData);
 
       if (result) {
-        const OrderID = result.data.ID;; // สมมติว่าผลลัพธ์มี ID ของคำสั่งซื้อที่สร้างขึ้น
+        const OrderID = result.data.ID; // สมมติว่าผลลัพธ์มี ID ของคำสั่งซื้อที่สร้างขึ้น
 
         // สร้าง Products_Order
         const productsOrderData = {
@@ -83,8 +83,6 @@ const Navbar: React.FC = () => {
         };
   
         CreateProductsOrder(productsOrderData);
-  
-      } else {
       }
     }
     setIsModalVisible(false); // ปิด Modal หลังจากสร้างคำสั่งซื้อเสร็จสิ้น
@@ -127,9 +125,17 @@ const Navbar: React.FC = () => {
             <img src={ShoppingCartIcon} alt='Shopping Cart' />
           </button>
 
-          <button className='button-icon button-icon2'>
+          <div className='button-icon button-icon2 list-container'>
             <img src={List} alt='List' />
-          </button>
+            <div className="list-menu">
+              {/* ตัวเลือกในเมนูที่แสดง */}
+              <ul>
+                <li>ตัวเลือก 1</li>
+                <li>ตัวเลือก 2</li>
+                <li>ตัวเลือก 3</li>
+              </ul>
+            </div>
+          </div>
 
           <button className='button-icon button-icon3'>
             <img src={Notification} alt='Notification' />
@@ -153,7 +159,6 @@ const Navbar: React.FC = () => {
             <span className="quantity">{quantity}</span>
           </div>
 
-          {/* <button className="basket">หยิบใส่ตะกร้า</button> */}
           <button className="Buy-products" onClick={handleBuyProduct}>ซื้อสินค้า</button>
           <button className="Chat">แชทกับผู้ขาย</button>
 
