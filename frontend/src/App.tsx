@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Menu, Layout, theme, DatePicker } from "antd";
 import { UserOutlined, DashboardOutlined } from "@ant-design/icons";
 
-import Navbar from './page/Buy-products/Navbar';
+import Navbar from './page/Myproduct/indedx';
 import Index from './page/Order/Index';
 import Index1 from './page/Purchase-list/Index';
 import logo from "/Users/gam/sa-67-song_thor_sut/frontend/public/458749239_1453530818692848_5200534269192406191_n.png";
@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "130vh" }}>
         <Sider
           collapsible
           collapsed={collapsed}

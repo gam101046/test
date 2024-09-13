@@ -108,7 +108,7 @@ async function DeleteOrder(id: number | undefined) {
 // List all products
 async function GetProducts() {
   try {
-    const res = await axios.get(`${apiUrl}/products`);
+    const res = await axios.get(`${apiUrl}/products`)
     return res.status === 200 ? res.data : false;
   } catch (error) {
     return false;
