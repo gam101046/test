@@ -1,16 +1,20 @@
-
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Menu, Layout, theme, DatePicker } from "antd";
-import { UserOutlined, DashboardOutlined } from "@ant-design/icons";
-
-import Navbar from './page/Myproduct/indedx';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Menu, Layout, theme, MenuProps } from 'antd';
+import {
+  UserOutlined,
+  HomeOutlined,
+  WechatOutlined,
+  UnorderedListOutlined,
+  ShopOutlined,
+} from '@ant-design/icons';
+import Navbar from './page/Buy-products/Byproduct';
 import Index from './page/Order/Index';
 import Index1 from './page/Purchase-list/Index';
-import logo from "/Users/gam/sa-67-song_thor_sut/frontend/public/458749239_1453530818692848_5200534269192406191_n.png";
-import "./App.css"
+import logo from '/Users/gam/sa-67-song_thor_sut/frontend/public/458749239_1453530818692848_5200534269192406191_n.png';
+import './App.css';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 type MenuItem = {
   key: string;
@@ -33,15 +37,38 @@ function getItem(
   } as MenuItem;
 }
 
+const items: MenuItem[] = [
+  {
+    key: 'sub4',
+    label: '',
+    icon: <UnorderedListOutlined  />,
+    children: [
+      { key: '1', label: 'บัญชีของฉัน' ,icon: <UserOutlined/>},
+      { key: '2', label: 'คำสั่งซื้อของฉัน' ,icon: <UnorderedListOutlined/>},
+      { key: '3', label: 'ร้านค้าของฉัน' ,icon: <ShopOutlined/>},
+    ],
+  },
+];
+
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [current, setCurrent] = useState('1');
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
+
   return (
     <Router>
-      <Layout style={{ minHeight: "130vh" }}>
+      <Layout style={{ minHeight: '130vh' }}>
         <Sider
           collapsible
           collapsed={collapsed}
@@ -49,8 +76,8 @@ const App: React.FC = () => {
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center',
               marginTop: 20,
               marginBottom: 20,
             }}
@@ -58,7 +85,7 @@ const App: React.FC = () => {
             <img
               src={logo}
               alt="Logo"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             />
           </div>
           <Menu
@@ -67,14 +94,14 @@ const App: React.FC = () => {
           >
             <Menu.Item key="dashboard">
               <Link to="/">
-                <DashboardOutlined />
-                <span>แดชบอร์ด</span>
+              <HomeOutlined />
+                <span>หน้าหลัก</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="index1">
               <Link to="/index">
-                <UserOutlined />
-                <span>รายการซื้อ</span>
+              <WechatOutlined />
+                <span>แชท</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="index">
@@ -84,10 +111,19 @@ const App: React.FC = () => {
               </Link>
             </Menu.Item>
           </Menu>
+          <Menu
+            defaultSelectedKeys={[current]}
+            defaultOpenKeys={['sub1']}
+            mode="inline"
+            theme="dark"
+            inlineCollapsed={collapsed}
+            onClick={onClick}
+            items={items}
+          />
         </Sider>
-        <Layout >
+        <Layout>
           <Header style={{ padding: 0, background: colorBgContainer }} />
-          <Content style={{ margin: "0 16px" }}>
+          <Content style={{ margin: '0 16px' }}>
             <Routes>
               <Route path="/" element={<Navbar />} />
               <Route path="/index" element={<Index1 />} />

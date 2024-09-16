@@ -3,7 +3,7 @@ import { Button, Modal, Table, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DeleteOrder, GetOrdersByProductIDAndSellerID, GetProductsBySellerId } from "../../services/http/index";
+import { DeleteOrder, GetOrdersByProductIDAndSellerID, GetProductsBySellerId ,GetMemberById} from "../../services/http/index";
 import "./Index.css";
 import Logo from "/Users/gam/sa-67-song_thor_sut/frontend/public/4-Photoroom.png";
 import Back from "/Users/gam/sa-67-song_thor_sut/frontend/public/back.png";
@@ -20,66 +20,84 @@ interface Product {
   Description: string;
   SellerID: number;
   OrderID?: number;
+  FirstName?: string;
+  LastName?: string;
+  PhoneNumber?: string;
 }
+
 
 interface Order {
   ID: number;
   Quantity: number;
   Total_price: number;
   SellerID: number;
+  MemberID: number;
 }
+
+interface Member {
+  FirstName?: string;
+  LastName?: string;
+  PhoneNumber?: string;
+}
+
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   
-  // Modal state
+
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<string>();
   const [deleteId, setDeleteId] = useState<number | undefined>();
 
-  // Function to fetch products with pagination
+
   const fetchProducts = async (page: number = 1, pageSize: number = 10) => {
-    const sellerId = 2; // Replace with the actual seller ID
+    const sellerId = 2;
     try {
       const result = await GetProductsBySellerId(sellerId, page, pageSize);
       if (result && Array.isArray(result.products)) {
-        const updatedProducts: Product[] = []; // Initialize an empty array
+        const updatedProducts: Product[] = [];
         const uniqueProductOrderIds = new Set<number>(); // Set to keep track of unique product-order combinations
   
         for (const product of result.products) {
           const orders: Order[] = await GetOrdersByProductIDAndSellerID(sellerId, product.ID);
           if (orders && orders.length > 0) {
-            // แยกรายการสินค้าตาม Order ที่ต่างกัน
-            orders.forEach((order: Order) => {
-              const uniqueKey = `${product.ID}-${order.ID}`; // Unique key for product-order combination
+            for (const order of orders) {
+              const uniqueKey = `${product.ID}-${order.ID}`;
               if (!uniqueProductOrderIds.has(order.ID)) {
                 uniqueProductOrderIds.add(order.ID); // Mark this order ID as added
+  
+ 
+                const memberData: Member | undefined = await GetMemberById(order.MemberID);
                 updatedProducts.push({
                   ...product,
                   Price: order.Total_price,
                   OrderID: order.ID,
                   Quantity: order.Quantity,
+                  MemberID: order.MemberID,
+                  FirstName: memberData?.FirstName,
+                  LastName: memberData?.LastName,
+                  PhoneNumber: memberData?.PhoneNumber,
                 });
               }
-            });
+            }
           } else {
-            // หากไม่มีคำสั่งซื้อ ให้แสดงรายการสินค้าเดิม
             if (!uniqueProductOrderIds.has(product.ID)) {
-              uniqueProductOrderIds.add(product.ID); 
+              uniqueProductOrderIds.add(product.ID);
               updatedProducts.push(product);
             }
           }
         }
   
-        setProducts(updatedProducts); 
+        setProducts(updatedProducts);
       }
     } catch (error) {
       console.error(error);
     }
   };
+  
   
   
 
@@ -94,11 +112,6 @@ const Index: React.FC = () => {
       key: "title",
     },
     {
-      title: "Description",
-      dataIndex: "Description",
-      key: "description",
-    },
-    {
       title: "Quantity",
       dataIndex: "Quantity",
       key: "quantity",
@@ -109,6 +122,16 @@ const Index: React.FC = () => {
       dataIndex: "Price",
       key: "price",
       render: (price) => `฿${price}`,
+    },
+    {
+      title: "Name",
+      key: "memberName",
+      render: (_, record) => `${record.FirstName || ""} ${record.LastName || ""}`, // รวม FirstName และ LastName
+    },
+    {
+      title: "PhoneNumber",
+      dataIndex: "PhoneNumber", // เพิ่มเบอร์โทรสมาชิก
+      key: "PhoneNumber",
     },
     {
       title: "Picture",
@@ -133,6 +156,7 @@ const Index: React.FC = () => {
       ),
     },
   ];
+  
 
   const showModal = (product: Product) => {
     setModalText(`คุณต้องการลบข้อมูลคำสั่งซื้อสำหรับสินค้าชื่อ "${product.Title}" หรือไม่?`);

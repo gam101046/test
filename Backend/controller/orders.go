@@ -7,18 +7,7 @@ import (
 	"github.com/sa-67-song_thor_sut/config"
 )
 
-// GET /orders
-func ListOrders(c *gin.Context) { //เข้าถึงข้อมูลคำสั่งซื้อทั้งหมด
-	var orders []entity.Order
 
-	db := config.DB()
-	result := db.Preload("Member").Preload("Seller").Preload("Product_Orders").Find(&orders)
-	if result.Error != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": result.Error.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, orders)
-}
 
 // POST /orders
 func CreateOrder(c *gin.Context) { // สร้างคำสั่งซื้อ

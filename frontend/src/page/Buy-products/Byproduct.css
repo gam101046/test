@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: auto;
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
@@ -112,14 +112,14 @@ body {
     position: absolute;
     top: 100px;
     left: 270px;
-    padding-left: 30px;
+    padding-left: 10px;
     margin-right: 300px;
     width: 436px;
     height: 49px;
     border-radius: 28px;
     background-image: url('/Users/gam/sa-67-song_thor_sut/frontend/public/search-286.png');
     background-repeat: no-repeat;
-    background-position: 420px center;
+    background-position: 390px center;
     background-size: 30px;
     font-size: 20px;
   }

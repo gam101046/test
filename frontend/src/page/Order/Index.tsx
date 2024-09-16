@@ -86,11 +86,6 @@ const Index: React.FC = () => {
 
   const columns: ColumnsType<Product> = [
     {
-      title: "ID",
-      dataIndex: "ID",
-      key: "id",
-    },
-    {
       title: "Title",
       dataIndex: "Title",
       key: "title",

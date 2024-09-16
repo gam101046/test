@@ -68,32 +68,6 @@ func GetProduct(c *gin.Context) { //เข้าถึงข้อมูลส�
 	c.JSON(http.StatusOK, product)
 }
 
-// PATCH /products/:id
-func UpdateProduct(c *gin.Context) { //อัพเดตข้อมูลตาม id
-	var product entity.Product
-
-	ProductID := c.Param("id")
-
-	db := config.DB()
-	result := db.First(&product, ProductID)
-	if result.Error != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "id not found"})
-		return
-	}
-
-	if err := c.ShouldBindJSON(&product); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request, unable to map payload"})
-		return
-	}
-
-	result = db.Save(&product)
-	if result.Error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"message": "Updated successful"})
-}
 
 // DELETE /products/:id
 func DeleteProduct(c *gin.Context) { //ลบข้อมูลตาม id

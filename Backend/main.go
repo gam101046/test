@@ -18,19 +18,19 @@ func main() {
 	r.Use(CORSMiddleware())
 	router := r.Group("")
 	{
-		router.GET("/member", controller.ListMembers)
+
 		router.POST("/member", controller.CreateMember)
-		router.PATCH("/member/:id", controller.UpdateMember)
-		router.DELETE("/member/:id", controller.DeleteMember)
+		router.GET("/member/:id",controller.GetMember)
+
 
 
 		router.POST("/sellers", controller.CreateSeller)
         router.GET("/sellers/:id", controller.GetSeller)
-        router.DELETE("/sellers/:id", controller.DeleteSeller)
+
 
 		router.POST("/orders", controller.CreateOrder)
         router.GET("/orders/:id", controller.GetOrder)
-		router.GET("/orders", controller.ListOrders)
+
         router.PATCH("/orders/:id", controller.UpdateOrder)
         router.DELETE("/orders/:id", controller.DeleteOrder)
 		router.GET("/orders/member/:memberId", controller.GetOrdersByMemberID)

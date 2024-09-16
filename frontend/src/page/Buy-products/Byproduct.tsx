@@ -2,7 +2,7 @@ import { ArrowCircleLeft, ArrowCircleRight, Minus, Plus } from "phosphor-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateOrder, CreateProductsOrder, GetProductById } from '../../services/http/index';
-import "./navbar.css";
+import "./Byproduct.css";
 import Logo from "/Users/gam/sa-67-song_thor_sut/frontend/public/4-Photoroom.png";
 import Back from "/Users/gam/sa-67-song_thor_sut/frontend/public/back.png";
 import List from "/Users/gam/sa-67-song_thor_sut/frontend/public/list.png";
@@ -17,14 +17,14 @@ interface Product {
   SellerID: number;
 }
 
-const Navbar: React.FC = () => {
+const Byproduct: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
-  const [isModalVisible, setIsModalVisible] = useState(false); // State for Modal visibility
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
   const [memberId, setMemberId] = useState<number | null>(null);
 
-  const productId = 2; // Change to the ID of the product you want to fetch
+  const productId = 2;
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       }
     };
     fetchProduct();
-    setMemberId(4);
+    setMemberId(7);
   }, [productId]);
 
   const increaseQuantity = () => {
@@ -171,4 +171,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default Byproduct;
