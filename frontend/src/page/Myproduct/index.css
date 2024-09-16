@@ -216,3 +216,17 @@ body {
     margin-top: 1000px; /* ระยะห่างจากด้านบน */
   }
   
+
+  .product-list .ant-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .product-list .ant-card-meta {
+    margin-top: auto;
+  }
+  
+  .product-list .ant-card-meta-title {
+    font-weight: bold;
+  }

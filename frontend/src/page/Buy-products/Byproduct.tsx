@@ -149,8 +149,6 @@ const Byproduct: React.FC = () => {
             <img src={product.Picture_product} className="Bag" alt='Product' />
           </div>
 
-          <ArrowCircleRight size={44} className="arrow-icon" />
-          <ArrowCircleLeft size={44} className="arrow-icon1" />
 
           <Plus size={25} className="icon-plus" onClick={increaseQuantity} />
           <Minus size={25} className="icon-minus" onClick={decreaseQuantity} />

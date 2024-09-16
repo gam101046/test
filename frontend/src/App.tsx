@@ -11,6 +11,7 @@ import {
 import Navbar from './page/Buy-products/Byproduct';
 import Index from './page/Order/Index';
 import Index1 from './page/Purchase-list/Index';
+import Index2 from './page/Myproduct/indedx';
 import logo from '/Users/gam/sa-67-song_thor_sut/frontend/public/458749239_1453530818692848_5200534269192406191_n.png';
 import './App.css';
 
@@ -21,19 +22,22 @@ type MenuItem = {
   icon?: React.ReactNode;
   children?: MenuItem[];
   label: React.ReactNode;
+  link?: string; // เพิ่ม link ที่นี่
 };
 
 function getItem(
   label: React.ReactNode,
   key: React.Key,
   icon?: React.ReactNode,
-  children?: MenuItem[]
+  children?: MenuItem[],
+  link?: string
 ): MenuItem {
   return {
     key,
     icon,
     children,
     label,
+    link,
   } as MenuItem;
 }
 
@@ -41,11 +45,11 @@ const items: MenuItem[] = [
   {
     key: 'sub4',
     label: '',
-    icon: <UnorderedListOutlined  />,
+    icon: <UnorderedListOutlined />,
     children: [
-      { key: '1', label: 'บัญชีของฉัน' ,icon: <UserOutlined/>},
-      { key: '2', label: 'คำสั่งซื้อของฉัน' ,icon: <UnorderedListOutlined/>},
-      { key: '3', label: 'ร้านค้าของฉัน' ,icon: <ShopOutlined/>},
+      { key: '1', label: 'บัญชีของฉัน', icon: <UserOutlined />, link: '/profile' },
+      { key: '2', label: 'คำสั่งซื้อของฉัน', icon: <UnorderedListOutlined />, link: '/product' },
+      { key: '3', label: 'ร้านค้าของฉัน', icon: <ShopOutlined />, link: '/Myproducts' }, // เพิ่มลิงก์ที่นี่
     ],
   },
 ];
@@ -94,13 +98,13 @@ const App: React.FC = () => {
           >
             <Menu.Item key="dashboard">
               <Link to="/">
-              <HomeOutlined />
+                <HomeOutlined />
                 <span>หน้าหลัก</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="index1">
               <Link to="/index">
-              <WechatOutlined />
+                <WechatOutlined />
                 <span>แชท</span>
               </Link>
             </Menu.Item>
@@ -113,13 +117,34 @@ const App: React.FC = () => {
           </Menu>
           <Menu
             defaultSelectedKeys={[current]}
-            defaultOpenKeys={['sub1']}
+            defaultOpenKeys={['sub4']} // เปลี่ยนเป็น 'sub4'
             mode="inline"
             theme="dark"
             inlineCollapsed={collapsed}
             onClick={onClick}
-            items={items}
-          />
+          >
+            {items.map(item => (
+              <Menu.SubMenu
+                key={item.key}
+                icon={item.icon}
+                title={item.label}
+              >
+                {item.children?.map(subItem => (
+                  <Menu.Item 
+                    key={subItem.key} 
+                    icon={subItem.icon}
+                    onClick={() => {
+                      if (subItem.link) {
+                        window.location.href = subItem.link;
+                      }
+                    }}
+                  >
+                    {subItem.label}
+                  </Menu.Item>
+                ))}
+              </Menu.SubMenu>
+            ))}
+          </Menu>
         </Sider>
         <Layout>
           <Header style={{ padding: 0, background: colorBgContainer }} />
@@ -128,6 +153,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Navbar />} />
               <Route path="/index" element={<Index1 />} />
               <Route path="/product" element={<Index />} />
+              <Route path="/Myproducts" element={<Index2 />} />
             </Routes>
           </Content>
         </Layout>
